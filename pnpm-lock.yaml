@@ -1,13 +1,17 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@tauri-apps/api': ^1.1.0
+  '@tauri-apps/cli': ^1.1.1
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
   '@typescript-eslint/eslint-plugin': ^5.38.0
   '@typescript-eslint/parser': ^5.38.0
   '@vitejs/plugin-react': ^2.1.0
+  classnames: ^2.3.2
   eslint: ^8.24.0
   eslint-plugin-react: ^7.31.8
+  i18next: ^22.0.1
   mobx: ^6.6.2
   mobx-react-lite: ^3.4.0
   mobx-state-tree: ^5.1.6
@@ -15,19 +19,27 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-hook-form: ^7.36.1
+  react-i18next: ^12.0.0
+  react-router-dom: ^6.4.2
   sass: ^1.55.0
   typescript: ^4.6.4
   vite: ^3.1.0
 
 dependencies:
+  '@tauri-apps/api': 1.1.0
+  classnames: 2.3.2
+  i18next: 22.0.1
   mobx: 6.6.2
   mobx-react-lite: 3.4.0_qrr2ojv4n7h7ey2xj7njerqqr4
   mobx-state-tree: 5.1.6_mobx@6.6.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.36.1_react@18.2.0
+  react-i18next: 12.0.0_d4t5m5ae4lmqad6yvxsbvc7zzi
+  react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
+  '@tauri-apps/cli': 1.1.1
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
   '@typescript-eslint/eslint-plugin': 5.38.0_4gkcvl6qsi23tqqawfqgcwtp54
@@ -273,6 +285,13 @@ packages:
       '@babel/types': 7.19.0
     dev: true
 
+  /@babel/runtime/7.19.4:
+    resolution: {integrity: sha512-EXpLCrk55f+cYqmHsSR+yD/0gAIMxxA9QK9lnQWzhMCvt+YmoBN7Zx94s++Kv0+unHk39vxNO8t+CMA2WSS3wA==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.10
+    dev: false
+
   /@babel/template/7.18.10:
     resolution: {integrity: sha512-TI+rCtooWHr3QJ27kJxfjutghu44DLnasDMwpDqCXVTal9RLp3RSYNh4NdBrRP2cQAoG9A8juOQl6P6oZG4JxA==}
     engines: {node: '>=6.9.0'}
@@ -425,6 +444,113 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+    dev: true
+
+  /@remix-run/router/1.0.2:
+    resolution: {integrity: sha512-GRSOFhJzjGN+d4sKHTMSvNeUPoZiDHWmRnXfzaxrqe7dE/Nzlc8BiMSJdLDESZlndM7jIUrZ/F4yWqVYlI0rwQ==}
+    engines: {node: '>=14'}
+    dev: false
+
+  /@tauri-apps/api/1.1.0:
+    resolution: {integrity: sha512-n13pIqdPd3KtaMmmAcrU7BTfdMtIlGNnfZD0dNX8L4p8dgmuNyikm6JAA+yCpl9gqq6I8x5cV2Y0muqdgD0cWw==}
+    engines: {node: '>= 12.22.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
+    dev: false
+
+  /@tauri-apps/cli-darwin-arm64/1.1.1:
+    resolution: {integrity: sha512-qBG11ig525/qf0f5OQxn0ON3hT8YdpTfpa4Y4kVqBJhdW50R5fadPv6tv5Dpl2TS2X7nWh/zg5mEXYoCK3HZ9w==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-darwin-x64/1.1.1:
+    resolution: {integrity: sha512-M3dMsp78OdxisbTwAWGvy3jIb3uqThtQcUYVvqOu9LeEOHyldOBFDSht+6PTBpaJLAHFMQK2rmNxiWgigklJaA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-arm-gnueabihf/1.1.1:
+    resolution: {integrity: sha512-LYlvdAd73cq+yTi6rw7j/DWIvDpeApwgQkIn+HYsNNeFhyFmABU7tmw+pekK3W3nHAkYAJ69Rl4ZdoxdNGKmHg==}
+    engines: {node: '>= 10'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-arm64-gnu/1.1.1:
+    resolution: {integrity: sha512-o/hbMQIKuFI7cTNpeQBHD/OCNJOBIci78faKms/t6AstLXx0QJuRHDk477Rg6VVy/I3BBKbyATALbmcTq+ti0A==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-arm64-musl/1.1.1:
+    resolution: {integrity: sha512-8Ci4qlDnXIp93XqUrtzFCBDatUzPHpZq7L3bociUbWpvy/bnlzxp1C/C+vwdc4uS1MiAp9v3BFgrU4i0f0Z3QQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-x64-gnu/1.1.1:
+    resolution: {integrity: sha512-ES4Bkx2JAI8+dDNDJswhLS3yqt+yT/4C6UfGOPIHFxcXUh6fe36eUllrTt+HLRS9xTZbYnteJy7ebq2TqMkaxw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-x64-musl/1.1.1:
+    resolution: {integrity: sha512-qrN1WOMAaDl+LE8P8iO0+DYlrWNTc9jIu/CsnVY/LImTn79ZPxEkcVBo0UGeKRI7f10TfvkVmLCBLxTz8QhEyA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-win32-ia32-msvc/1.1.1:
+    resolution: {integrity: sha512-vw7VOmrQlywHhFV3pf54udf2FRNj9dg9WP1gL0My55FnB+w+PWS9Ipm871kX5qepmChdnZHKq9fsqE2uTjX//Q==}
+    engines: {node: '>= 10'}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-win32-x64-msvc/1.1.1:
+    resolution: {integrity: sha512-OukxlLLi3AoCN4ABnqCDTiiC7xJGWukAjrKCIx7wFISrLjNfsrnH7/UOzuopfGpZChSe2c+AamVmcpBfVsEmJA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli/1.1.1:
+    resolution: {integrity: sha512-80kjMEMPBwLYCp0tTKSquy90PHHGGBvZsneNr3B/mWxNsvjzA1C0vOyGJGFrJuT2OmkvrdvuJZ5mch5hL8O1Xg==}
+    engines: {node: '>= 10'}
+    hasBin: true
+    optionalDependencies:
+      '@tauri-apps/cli-darwin-arm64': 1.1.1
+      '@tauri-apps/cli-darwin-x64': 1.1.1
+      '@tauri-apps/cli-linux-arm-gnueabihf': 1.1.1
+      '@tauri-apps/cli-linux-arm64-gnu': 1.1.1
+      '@tauri-apps/cli-linux-arm64-musl': 1.1.1
+      '@tauri-apps/cli-linux-x64-gnu': 1.1.1
+      '@tauri-apps/cli-linux-x64-musl': 1.1.1
+      '@tauri-apps/cli-win32-ia32-msvc': 1.1.1
+      '@tauri-apps/cli-win32-x64-msvc': 1.1.1
     dev: true
 
   /@types/json-schema/7.0.11:
@@ -758,6 +884,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: false
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -1473,6 +1603,18 @@ packages:
       function-bind: 1.1.1
     dev: true
 
+  /html-parse-stringify/3.0.1:
+    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
+    dependencies:
+      void-elements: 3.1.0
+    dev: false
+
+  /i18next/22.0.1:
+    resolution: {integrity: sha512-CRbtl6urEcIDbIzP4sGoPf9YuDNto1JgCRsfdvcVUOPb8nPAQ0azhPZiSdD5AFg/Erb58+/nDRmhm8bzVyjABQ==}
+    dependencies:
+      '@babel/runtime': 7.19.4
+    dev: false
+
   /ignore/5.2.0:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
@@ -1960,6 +2102,26 @@ packages:
       react: 18.2.0
     dev: false
 
+  /react-i18next/12.0.0_d4t5m5ae4lmqad6yvxsbvc7zzi:
+    resolution: {integrity: sha512-/O7N6aIEAl1FaWZBNvhdIo9itvF/MO/nRKr9pYqRc9LhuC1u21SlfwpiYQqvaeNSEW3g3qUXLREOWMt+gxrWbg==}
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.19.4
+      html-parse-stringify: 3.0.1
+      i18next: 22.0.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
@@ -1968,6 +2130,29 @@ packages:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /react-router-dom/6.4.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-yM1kjoTkpfjgczPrcyWrp+OuQMyB1WleICiiGfstnQYo/S8hPEEnVjr/RdmlH6yKK4Tnj1UGXFSa7uwAtmDoLQ==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.0.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-router: 6.4.2_react@18.2.0
+    dev: false
+
+  /react-router/6.4.2_react@18.2.0:
+    resolution: {integrity: sha512-Rb0BAX9KHhVzT1OKhMvCDMw776aTYM0DtkxqUBP8dNBom3mPXlfNs76JNGK8wKJ1IZEY1+WGj+cvZxHVk/GiKw==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.0.2
+      react: 18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -1982,6 +2167,10 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /regenerator-runtime/0.13.10:
+    resolution: {integrity: sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==}
+    dev: false
 
   /regexp.prototype.flags/1.4.3:
     resolution: {integrity: sha512-fjggEOO3slI6Wvgjwflkc4NFRCTZAu5CnNfBd5qOMYhWdn67nJBBu34/TkD++eeFmd8C9r9jfXJ27+nSiRkSUA==}
@@ -2282,6 +2471,11 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /void-elements/3.1.0:
+    resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /which-boxed-primitive/1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}

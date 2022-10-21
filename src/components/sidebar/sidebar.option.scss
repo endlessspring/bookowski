@@ -1,0 +1,18 @@
+.bb-sidebar-option {
+  height: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 3px 3px 3px 6px;
+  font-size: 13px;
+  color: whitesmoke;
+
+  &--active {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
