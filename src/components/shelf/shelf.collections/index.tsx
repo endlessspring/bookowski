@@ -1,8 +1,8 @@
 import React from "react";
-import Page from "../shared/Page";
+import Page from "../shared/page";
 
 const ShelfCollections = () => {
-    return <Page>
+    return <Page title="Коллекции">
         collections
     </Page>
 }
