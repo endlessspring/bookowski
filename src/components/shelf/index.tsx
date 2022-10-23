@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-
+import { observer } from "mobx-react-lite";
 import ShelfSearch from "./shelf.search";
 import ShelfNotes from "./shelf.notes";
 import ShelfCollections from "./shelf.collections";
 import ShelfBooks from "./shelf.books";
 
 import "./style.scss";
+import { useStore } from "../../hooks/useStore";
 
 type Props = {};
 
-const Shelf: React.FC<Props> = () => {
+const Shelf: React.FC<Props> = observer(() => {
+  const { bookStore } = useStore();
+
+  useEffect(() => {
+    bookStore.scanLibrary()
+  }, [])
+
   return (
     <div className={"bb-shelf"}>
       <Routes>
@@ -22,6 +29,6 @@ const Shelf: React.FC<Props> = () => {
       </Routes>
     </div>
   );
-};
+});
 
 export default Shelf;
