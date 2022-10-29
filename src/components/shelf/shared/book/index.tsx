@@ -3,13 +3,18 @@ import "./style.scss";
 
 type Props = {
   title?: string;
+  cover?: string;
 };
 
-const Book: React.FC<Props> = ({ title }) => {
+const Book: React.FC<Props> = ({ title, cover }) => {
   return (
     <div className="bb-book">
-      <div className="bb-book-cover"></div>
-      <div className="bb-book-footer">{title}</div>
+      <div className="bb-book-cover">
+        <img src={cover} alt="1" />
+      </div>
+      <div className="bb-book-footer">
+        <div className="bb-book-title">{title}</div>
+      </div>
     </div>
   );
 };

@@ -12,11 +12,6 @@ import { useStore } from "../../hooks/useStore";
 type Props = {};
 
 const Shelf: React.FC<Props> = observer(() => {
-  const { bookStore } = useStore();
-
-  useEffect(() => {
-    bookStore.scanLibrary()
-  }, [])
 
   return (
     <div className={"bb-shelf"}>

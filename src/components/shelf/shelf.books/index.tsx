@@ -5,21 +5,31 @@ import Book from "../shared/book";
 import Page from "../shared/page";
 
 const ShelfBooks = observer(() => {
-  const store = useStore();
+  const {
+    bookStore: { books, isLoading, addBookFile },
+  } = useStore();
 
   return (
     <Page title="Книги">
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        <input
-          type="file"
-          onChange={(e) => {
-            store.bookStore.addBookFile(e.target.files?.item(0));
-          }}
-        />
-        {store.bookStore.books.map((book, index) => (
-          <Book key={book.name + index} title={book.name} />
-        ))}
-      </div>
+      <input
+        type="file"
+        onChange={(e) => {
+          addBookFile(e.target.files?.item(0) || new File([], ""));
+        }}
+      />
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          {books.map((book, index) => (
+            <Book
+              key={book.name + index}
+              title={book.name}
+              cover={book.cover || ""}
+            />
+          ))}
+        </div>
+      )}
     </Page>
   );
 });

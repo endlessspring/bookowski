@@ -1,7 +1,5 @@
-import { type } from 'epubjs/types/utils/core';
 import {Instance, types} from "mobx-state-tree";
-import BooksStore from "./BooksStore";
-import FS from "./shared/fs";
+import BooksStore from "./Books.store";
 
 export type RootStoreInstance = Instance<typeof RootStore>;
 

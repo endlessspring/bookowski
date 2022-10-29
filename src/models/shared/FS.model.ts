@@ -6,7 +6,7 @@ import {
   writeBinaryFile,
 } from "@tauri-apps/api/fs";
 
-const FS = types
+const FsModel = types
   .model({
     files: types.optional(
       types.array(
@@ -38,6 +38,8 @@ const FS = types
       );
 
       self.files = cast(entries);
+
+      return entries;
     });
 
     const addFile = flow(function* (file: File) {
@@ -62,4 +64,4 @@ const FS = types
     return { createDirectory, addFile, scanFiles };
   });
 
-export default FS;
+export default FsModel;
