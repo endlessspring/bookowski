@@ -5,23 +5,27 @@ import Sidebar from "./components/sidebar";
 import Shelf from "./components/shelf";
 
 import "./App.scss";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useStore } from "./hooks/useStore";
+import Reader from "./components/reader";
 
 createI18n();
 
-function App() {  
+function App() {
   const { bookStore } = useStore();
 
   useEffect(() => {
-    bookStore.scanLibrary()
-  }, [])
-  
+    bookStore.scanLibrary();
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
         <Sidebar />
         <Shelf />
+        <Routes>
+          <Route path="/reader/:id" element={<Reader />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );

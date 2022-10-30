@@ -17,12 +17,12 @@ const Sidebar: React.FC<Props> = () => {
         <div className={classNames("bb-sidebar")}>
             <SidebarHeader/>
             <SidebarSection title={'Книги'}>
-                <SidebarOption label={'Читаю сейчас'} link={'/reading'}/>
+                <SidebarOption label={'Читаю сейчас'} link={'/shelf/reading'}/>
                 <SidebarOption label={'Хочу прочесть'} />
             </SidebarSection>
             <SidebarSection title={'Библиотека'}>
-                <SidebarOption label={'Все'} link={'/books'}/>
-                <SidebarOption label={'Мои заметки'} link={'/notes'}/>
+                <SidebarOption label={'Все'} link={'/shelf/books'}/>
+                <SidebarOption label={'Мои заметки'} link={'/shelf/notes'}/>
             </SidebarSection>
             <SidebarSection title={'Коллекции'}>
                 <SidebarOption label={'Новая коллекция'}/>

@@ -5,6 +5,7 @@ import ShelfSearch from "./shelf.search";
 import ShelfNotes from "./shelf.notes";
 import ShelfCollections from "./shelf.collections";
 import ShelfBooks from "./shelf.books";
+import { WebviewWindow } from "@tauri-apps/api/window";
 
 import "./style.scss";
 import { useStore } from "../../hooks/useStore";
@@ -12,15 +13,13 @@ import { useStore } from "../../hooks/useStore";
 type Props = {};
 
 const Shelf: React.FC<Props> = observer(() => {
-
   return (
     <div className={"bb-shelf"}>
       <Routes>
-        <Route path={"/books"} element={<ShelfBooks />} />
-        <Route path={"/notes"} element={<ShelfNotes />} />
-        <Route path={"/collections"} element={<ShelfCollections />} />
-        <Route path={"/search"} element={<ShelfSearch />} />
-        <Route path="*" element={<Navigate to="/books" replace />} />
+        <Route path={"/shelf/books"} element={<ShelfBooks />} />
+        <Route path={"/shelf/notes"} element={<ShelfNotes />} />
+        <Route path={"/shelf/collections"} element={<ShelfCollections />} />
+        <Route path={"/shelf/search"} element={<ShelfSearch />} />
       </Routes>
     </div>
   );
