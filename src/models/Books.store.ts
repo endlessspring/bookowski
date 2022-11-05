@@ -4,6 +4,7 @@ import FsModel from "./shared/FS.model";
 import { Book } from "epubjs";
 import { BookModel } from "./shared/Book.model";
 import { ask } from "@tauri-apps/api/dialog";
+import { number } from "mobx-state-tree/dist/internal";
 
 const BooksStore = types
   .model({
@@ -25,10 +26,15 @@ const BooksStore = types
     const getBookByPath = (path: string) => {
       return self.books.find((item) => item.path === path);
     };
+    
+    const getBookById = (id: number) => {
+      return self.books.find((item) => item.id == id);
+    };
 
     return {
       getBookByName,
       getBookByPath,
+      getBookById,
     };
   })
   .actions((self) => {
@@ -45,8 +51,8 @@ const BooksStore = types
 
       const metadata = yield book.loaded.metadata;
       const cover = yield book.coverUrl();
-
-      return { name: metadata.title, cover, path };
+      
+      return { id: Math.random(), name: metadata.title, cover, path };
     });
 
     const scanLibrary = flow(function* () {

@@ -9,6 +9,7 @@ const ShelfBooks = observer(() => {
     bookStore: { books, isLoading, addBookFile },
   } = useStore();
 
+  
   return (
     <Page title="Книги">
       <input
@@ -26,6 +27,8 @@ const ShelfBooks = observer(() => {
               key={book.name + index}
               title={book.name}
               cover={book.cover || ""}
+              path={book.path}
+              id={book.id}
             />
           ))}
         </div>

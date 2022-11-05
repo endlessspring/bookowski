@@ -1,11 +1,22 @@
 .bb-reader {
-    width: 100%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  overflow: hidden;
+  .bb-reader-header {
+    height: 25px;
+    z-index: 100;
+    background: white;
+  }
+  .bb-reader-content {
+    position: relative;
     height: 100%;
-    position: absolute;
-    color: beige;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: beige;
+    max-height: 100%;
+    overflow: hidden;
+  }
 }

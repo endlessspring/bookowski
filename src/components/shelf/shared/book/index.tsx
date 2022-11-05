@@ -1,22 +1,26 @@
 import { WebviewWindow } from "@tauri-apps/api/window";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import "./style.scss";
 
 type Props = {
+  id: any;
   title?: string;
   cover?: string;
+  path?: string;
 };
 
-const Book: React.FC<Props> = ({ title, cover }) => {
+const Book: React.FC<Props> = ({ id, title, cover, path }) => {
+  
+  console.log(id);
+  
+  const navigate = useNavigate()
   return (
     <div
       className="bb-book"
       onClick={() => {
-        new WebviewWindow("reader", {
-          url: "/reader/123",
-          center: true,
-        });
+        navigate(`/reader/${id}`)
       }}
     >
       <div className="bb-book-cover">
