@@ -1,5 +1,6 @@
 import RootStore, { RootStoreInstance } from "../models/Root.store";
 
-export const useStore = (): RootStoreInstance => {
+export const useMst = (): RootStoreInstance => {
   return RootStore;
-}; 
+};
+

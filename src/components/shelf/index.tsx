@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+
 import ShelfSearch from "./shelf.search";
 import ShelfNotes from "./shelf.notes";
 import ShelfCollections from "./shelf.collections";
 import ShelfBooks from "./shelf.books";
-import { WebviewWindow } from "@tauri-apps/api/window";
 
 import "./style.scss";
-import { useStore } from "../../hooks/useStore";
 
-type Props = {};
-
-const Shelf: React.FC<Props> = observer(() => {
+const Shelf: React.FC = observer(() => {
   return (
     <div className={"bb-shelf"}>
       <Routes>

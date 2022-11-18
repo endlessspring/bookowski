@@ -1,10 +1,9 @@
 import { BaseDirectory, readBinaryFile } from "@tauri-apps/api/fs";
-import { cast, flow, types } from "mobx-state-tree";
-import FsModel from "./shared/FS.model";
+import { cast, flow, getRoot, types } from "mobx-state-tree";
 import { Book } from "epubjs";
+
+import FsModel from "./shared/FS.model";
 import { BookModel } from "./shared/Book.model";
-import { ask } from "@tauri-apps/api/dialog";
-import { number } from "mobx-state-tree/dist/internal";
 
 const BooksStore = types
   .model({
@@ -20,15 +19,15 @@ const BooksStore = types
   })
   .views((self) => {
     const getBookByName = (name: string) => {
-      return self.books.find((item) => item.name === name);
+      return self.books.find((item) => item.title === name);
     };
 
     const getBookByPath = (path: string) => {
       return self.books.find((item) => item.path === path);
     };
-    
+
     const getBookById = (id: number) => {
-      return self.books.find((item) => item.id == id);
+      return self.books.find((item) => item.id === id);
     };
 
     return {
@@ -38,6 +37,8 @@ const BooksStore = types
     };
   })
   .actions((self) => {
+    const root = getRoot(self);
+
     const { fs } = self;
 
     const addNewBookFile = flow(function* (file: File) {
@@ -50,13 +51,17 @@ const BooksStore = types
       const book = new Book(bookBuffer);
 
       const metadata = yield book.loaded.metadata;
-      const cover = yield book.coverUrl();
-      
-      return { id: Math.random(), name: metadata.title, cover, path };
+
+      return {
+        id: Math.round(Math.random() * 100000),
+        title: metadata.title,
+        path,
+      };
     });
 
     const scanLibrary = flow(function* () {
       const { files } = fs;
+      self = cast(JSON.parse(localStorage.getItem("bookly") || "").bookStore);
 
       self.isLoading = true;
       try {
@@ -69,6 +74,7 @@ const BooksStore = types
         return Promise.reject(e);
       } finally {
         self.isLoading = false;
+        localStorage.setItem("bookly", JSON.stringify(root));
       }
     });
 

@@ -1,26 +1,21 @@
-import Epub from "epubjs";
-import ePub, { Book } from "epubjs";
-import Url from "epubjs/types/utils/url";
 import { observer } from "mobx-react-lite";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useMemo } from "react";
 import { ReactReader } from "react-reader";
-import { useNavigate, useNavigation, useParams } from "react-router-dom";
-import { useStore } from "../../hooks/useStore";
+import { useNavigate, useParams } from "react-router-dom";
+import { useMst } from "../../hooks/useStore";
 
 import "./style.scss";
 
 const Reader: React.FC = observer(() => {
   const { id } = useParams<{ id: string }>();
-  const { bookStore } = useStore();
+  const { bookStore } = useMst();
 
-  const book = bookStore.getBookById(Number(id))
+  const book = useMemo(
+    () => bookStore.getBookById(Number(id)),
+    [bookStore?.books?.length]
+  );
 
-  const navigate = useNavigate();
-
-  const buffer = useMemo( () => book?.getBufferArray(), [book?.path])
-
-
-
+  const buffer = useMemo(() => book && book?.getBufferArray(), [book?.path]);
   
   return (
     <div className="bb-reader">
@@ -28,7 +23,13 @@ const Reader: React.FC = observer(() => {
         {/* <button onClick={() => navigate(-1)}>back</button> */}
       </div>
       <div className="bb-reader-content">
-        {buffer && <ReactReader url={buffer}/>}
+        {buffer && (
+          <ReactReader
+            locationChanged={book?.setLocation}
+            location={book?.location}
+            url={buffer as any}
+          />
+        )}
       </div>
       <div className="bb-reader-footer"></div>
     </div>
