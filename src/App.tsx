@@ -31,23 +31,4 @@ function App() {
   );
 }
 
-interface Strategy {
-  authenticate(args: any[]): boolean;
-}
-
-class TwitterStrategy implements Strategy {
-  authenticate(args: any[]) {
-    const [token] = args;
-
-    if (token !== "tw123") {
-      console.error("Аутентификация с помощью аккаунта Twitter провалилась!");
-      return false;
-    }
-
-    console.log("Аутентификация с помощью аккаунта Twitter выполнена успешно!");
-
-    return true;
-  }
-}
-
 export default App;
