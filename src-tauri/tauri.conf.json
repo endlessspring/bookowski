@@ -7,7 +7,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "things_tree_react",
+    "productName": "Bookowski",
     "version": "0.1.0"
   },
   "tauri": {
