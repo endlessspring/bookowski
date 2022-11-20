@@ -1,6 +1,7 @@
+import React, { useCallback } from "react";
 import { WebviewWindow } from "@tauri-apps/api/window";
 import { observer } from "mobx-react-lite";
-import React, { useCallback } from "react";
+import { HashLoader } from "react-spinners";
 import { BookModel } from "../../../../models/shared/Book.model";
 
 import "./style.scss";
@@ -20,10 +21,10 @@ const Book: React.FC<Props> = observer(({ book }) => {
   return (
     <div className="bb-book" onClick={handleBookClick}>
       <div className="bb-book-cover">
-        {book.cover ? (
+        {book.cover && !book.isLoading ? (
           <img src={book.cover} alt="loading" />
         ) : (
-          <React.Fragment />
+          <HashLoader color="white" />
         )}
       </div>
       <div className="bb-book-footer">

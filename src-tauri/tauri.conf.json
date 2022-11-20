@@ -13,6 +13,11 @@
   "tauri": {
     "allowlist": {
       "all": true,
+      "protocol": {
+        "all": true,
+        "asset": true,
+        "assetScope": { "allow": ["**"] }
+      },
       "fs": {
         "all": true,
         "scope": ["**"]
@@ -52,7 +57,7 @@
       }
     },
     "security": {
-      "csp": null
+      "csp": "default-src asset: blob: data: filesystem: ws: wss: http: https: tauri: 'unsafe-eval' 'unsafe-inline' 'self' img-src: 'self'"
     },
     "updater": {
       "active": false
@@ -62,7 +67,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "Things Tree",
+        "title": "Bookowski",
         "width": 800,
         "theme": "Dark"
       }

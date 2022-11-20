@@ -1,6 +1,5 @@
 use cocoa::appkit::{NSWindow, NSWindowStyleMask};
 use tauri::{Runtime, Window,Manager, Size, LogicalSize};
-
 pub trait WindowExt {
   #[cfg(target_os = "macos")]
   fn set_transparent_titlebar(&self, transparent: bool);

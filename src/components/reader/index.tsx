@@ -16,17 +16,16 @@ const Reader: React.FC = observer(() => {
   );
 
   const buffer = useMemo(() => book && book?.getBufferArray(), [book?.path]);
-  
+
   return (
     <div className="bb-reader">
-      <div className="bb-reader-header">
-        {/* <button onClick={() => navigate(-1)}>back</button> */}
-      </div>
+      <div className="bb-reader-header"></div>
       <div className="bb-reader-content">
         {buffer && (
           <ReactReader
             locationChanged={book?.setLocation}
             location={book?.location}
+            //HACK: костыль
             url={buffer as any}
           />
         )}

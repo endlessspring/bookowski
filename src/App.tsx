@@ -12,12 +12,6 @@ import "./App.scss";
 createI18n();
 
 function App() {
-  const { bookStore } = useMst();
-
-  useEffect(() => {
-    bookStore.scanLibrary();
-  }, []);
-
   return (
     <div className="App">
       <BrowserRouter>

@@ -27,6 +27,13 @@ const FsModel = types
     ),
     baseFolder: types.optional(types.string, ""),
   })
+  .views((self) => {
+    const fuzzyFindFileByName = (search_string: string) => {
+      return self.files.find((file) => file.name.includes(search_string));
+    };
+
+    return { fuzzyFindFileByName };
+  })
   .actions((self) => {
     const { baseFolder } = self;
     const baseDirectory = self.baseDirectory as unknown as BaseDirectory;
@@ -51,6 +58,7 @@ const FsModel = types
         dir: baseDirectory,
       });
 
+      // FIXME: Не сканировать всю папку, а добавлять единично
       yield scanFiles();
     });
 
