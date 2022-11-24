@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React, { useMemo } from "react";
 import { ReactReader } from "react-reader";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { useMst } from "../../hooks/useStore";
 
 import "./style.scss";
@@ -15,7 +15,10 @@ const Reader: React.FC = observer(() => {
     [bookStore?.books?.length]
   );
 
-  const buffer = useMemo(() => book && book?.getBufferArray(), [book?.path]);
+  const buffer = useMemo(
+    () => book?.path && book?.getBufferArray(),
+    [book?.path]
+  );
 
   return (
     <div className="bb-reader">

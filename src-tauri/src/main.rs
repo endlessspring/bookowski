@@ -39,7 +39,7 @@ fn main() {
       .setup(|app| {
         let win = app.get_window("main").unwrap();
         win.set_transparent_titlebar(true);
-        win.set_min_size(Option::Some(Size::Logical(LogicalSize { width: 1000.0, height: 600.0 }))).unwrap();
+        win.set_min_size(Option::Some(Size::Logical(LogicalSize { width: 1030.0, height: 600.0 }))).unwrap();
         Ok(())
       })
       .run(tauri::generate_context!())

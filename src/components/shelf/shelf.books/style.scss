@@ -1,7 +1,25 @@
 .bb-shelf-books {
   display: flex;
   flex-wrap: wrap;
-  
+
+  .bb-book {
+    transition: 100ms;
+    .bb-book-cover {
+      width: unset;
+      height: unset;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    .bb-book {
+      width: 25%;
+    }
+  }
+  @media screen and (min-width: 1250px) {
+    .bb-book {
+      width: 20%;
+    }
+  }
 }
 .bb-shelf-add-book {
   background: cornflowerblue;
