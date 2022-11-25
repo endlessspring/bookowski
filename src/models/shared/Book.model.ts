@@ -1,4 +1,6 @@
 import { readBinaryFile } from "@tauri-apps/api/fs";
+import { convertFileSrc } from "@tauri-apps/api/tauri";
+
 import { flow, Instance, types } from "mobx-state-tree";
 import AuthorModel from "./Author.model";
 
@@ -20,33 +22,30 @@ export const BookModel = types
     const setLocation = (location: string | number) => {
       self.location = String(location);
     };
-    const getCover = flow(function* () {
+    const getCover = () => {
       // FIXME: Получать url обложки без загрузки файла напрямую через локальный путь
-      return yield readBinaryFile(self.coverUrl).then((r) =>
-        URL.createObjectURL(new Blob([r.buffer]))
-      );
-    });
+      return convertFileSrc(self.coverUrl);
+    };
     const getBufferArray: () => Promise<ArrayBuffer> = flow(function* () {
       return (yield readBinaryFile(self?.path)).buffer;
     });
 
-    const init = flow(function* () {
+    const init = () => {
       self.isLoading = true;
       try {
-        self.cover = yield getCover();
+        self.cover = getCover();
       } catch (e) {
-        
         return Promise.reject(
-          `Something went wrong while book ${self.title} loading`,
+          `Something went wrong while book ${self.title} loading`
         );
       } finally {
         self.isLoading = false;
       }
-    });
+    };
 
-    const afterCreate = flow(function* () {
-      yield init();
-    });
+    const afterCreate = () => {
+      init();
+    };
 
     return { afterCreate, setLocation, getBufferArray, getCover };
   });
