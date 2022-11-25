@@ -1,4 +1,4 @@
-import { BaseDirectory, readBinaryFile } from "@tauri-apps/api/fs";
+import { BaseDirectory, FileEntry, readBinaryFile } from "@tauri-apps/api/fs";
 import { cast, flow, types } from "mobx-state-tree";
 import { Book } from "epubjs";
 
@@ -59,9 +59,10 @@ const BooksStore = types
     const { library, covers } = self;
 
     const addNewBookFile = flow(function* (file: File) {
-      yield library?.addFile(file);
-      //FIXME: Не сканировать всю папку, а добавлять единично
-      yield scanLibrary();
+      const entry = yield library?.addFile(file);
+
+      addBook(yield getBookData(entry?.path));
+      storeBooks();
     });
 
     const addBook = (book: BookModel) => {
@@ -76,9 +77,11 @@ const BooksStore = types
       const coverUrl = yield book.coverUrl();
       const metadata = yield book.loaded.metadata;
 
-      // FIXME: Не добавлять файл если он уже существует
+      let coverEntry: FileEntry | undefined;
       yield fetch(coverUrl).then(async (r) => {
-        covers.addFile(new File([await r.blob()], `${metadata.title}.png`));
+        coverEntry = await covers.addFile(
+          new File([await r.blob()], `${metadata.title}.png`)
+        );
       });
 
       return {
@@ -86,7 +89,7 @@ const BooksStore = types
         title: metadata.title,
         path,
         // FIXME: Получать путь не перебирая весь массив
-        coverUrl: covers.fuzzyFindFileByName(metadata.title)?.path,
+        coverUrl: coverEntry?.path,
       };
     });
 

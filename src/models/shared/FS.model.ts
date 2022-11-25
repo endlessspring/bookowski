@@ -4,6 +4,7 @@ import {
   readDir,
   createDir,
   writeBinaryFile,
+  FileEntry,
 } from "@tauri-apps/api/fs";
 
 const FsModel = types
@@ -60,6 +61,7 @@ const FsModel = types
 
       // FIXME: Не сканировать всю папку, а добавлять единично
       yield scanFiles();
+      return self.fuzzyFindFileByName(file.name) as FileEntry;
     });
 
     const createDirectory = flow(function* () {

@@ -69,7 +69,9 @@
         "resizable": true,
         "title": "Bookowski",
         "width": 800,
-        "theme": "Dark"
+        "theme": "Dark",
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true
       }
     ]
   }
