@@ -1,7 +1,9 @@
 import { readBinaryFile } from "@tauri-apps/api/fs";
 import { convertFileSrc } from "@tauri-apps/api/tauri";
+import { WebviewWindow } from "@tauri-apps/api/window";
 
 import { flow, Instance, types } from "mobx-state-tree";
+import { nanoid } from "nanoid";
 import AuthorModel from "./Author.model";
 
 export type BookModel = Instance<typeof BookModel>;
@@ -23,12 +25,18 @@ export const BookModel = types
       self.location = String(location);
     };
     const getCover = () => {
-      // FIXME: Получать url обложки без загрузки файла напрямую через локальный путь
       return convertFileSrc(self.coverUrl);
     };
     const getBufferArray: () => Promise<ArrayBuffer> = flow(function* () {
       return (yield readBinaryFile(self?.path)).buffer;
     });
+
+    const openInNewWindow = () => {
+      new WebviewWindow(nanoid(7), {
+        url: `/reader/${self.id}`,
+        title: self.title,
+      });
+    };
 
     const init = () => {
       self.isLoading = true;
@@ -47,5 +55,11 @@ export const BookModel = types
       init();
     };
 
-    return { afterCreate, setLocation, getBufferArray, getCover };
+    return {
+      afterCreate,
+      setLocation,
+      getBufferArray,
+      getCover,
+      openInNewWindow,
+    };
   });
