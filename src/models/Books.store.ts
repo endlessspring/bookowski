@@ -4,6 +4,7 @@ import { Book } from "epubjs";
 
 import FsModel from "./shared/FS.model";
 import { BookModel } from "./shared/Book.model";
+import moment from "moment";
 
 // FIXME: При Добавлении новой книги, обложка подгружается только после перезагрузки
 // TODO: Поддержака fb2
@@ -28,6 +29,15 @@ const BooksStore = types
     ),
   })
   .views((self) => {
+    const getLastOpened = () => {
+      return self.books
+        .filter((item) => item.lastOpened)
+        .concat()
+        .sort(
+          (a, b) => moment(b.lastOpened).unix() - moment(a.lastOpened).unix()
+        );
+    };
+
     const getBookByName = (name: string) => {
       return self.books.find((item) => item.title === name);
     };
@@ -44,6 +54,7 @@ const BooksStore = types
       getBookByName,
       getBookByPath,
       getBookById,
+      sortByLastOpened: getLastOpened,
     };
   })
   .views((self) => {
@@ -62,7 +73,7 @@ const BooksStore = types
       const entry = yield library?.addFile(file);
 
       addBook(yield getBookData(entry?.path));
-      storeBooks();
+      storeBooksStore();
     });
 
     const addBook = (book: BookModel) => {
@@ -93,16 +104,14 @@ const BooksStore = types
       };
     });
 
-    const storeBooks = () => {
+    const storeBooksStore = () => {
       localStorage.setItem("books", JSON.stringify(self.books));
     };
 
-    const restoreBooks = () => {
-      const copy = localStorage.getItem("books");
+    const restoreBooksStore = () => {
+      const books = localStorage.getItem("books");
 
-      if (copy) {
-        self.books = cast(JSON.parse(copy));
-      }
+      books && (self.books = cast(JSON.parse(books)));
     };
 
     const scanLibrary = flow(function* () {
@@ -120,7 +129,7 @@ const BooksStore = types
         return Promise.reject(e);
       } finally {
         self.isLoading = false;
-        storeBooks();
+        storeBooksStore();
       }
     });
 
@@ -137,11 +146,17 @@ const BooksStore = types
     });
 
     const afterCreate = flow(function* () {
-      restoreBooks();
+      restoreBooksStore();
       yield init();
     });
 
-    return { afterCreate, addBookFile: addNewBookFile, scanLibrary };
+    return {
+      afterCreate,
+      addBookFile: addNewBookFile,
+      scanLibrary,
+      storeBooksStore,
+      restoreBooksStore,
+    };
   });
 
 export default BooksStore;

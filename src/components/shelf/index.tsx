@@ -6,6 +6,7 @@ import ShelfSearch from "./shelf.search";
 import ShelfNotes from "./shelf.notes";
 import ShelfCollections from "./shelf.collections";
 import ShelfBooks from "./shelf.books";
+import ShelfDashboard from "./shelf.dashboard";
 
 import "./style.scss";
 
@@ -13,6 +14,7 @@ const Shelf: React.FC = observer(() => {
   return (
     <div className={"bb-shelf"}>
       <Routes>
+        <Route path={"/shelf/dashboard"} element={<ShelfDashboard />} />
         <Route path={"/shelf/books"} element={<ShelfBooks />} />
         <Route path={"/shelf/notes"} element={<ShelfNotes />} />
         <Route path={"/shelf/collections"} element={<ShelfCollections />} />
