@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 import ShelfSearch from "./shelf.search";
@@ -19,6 +19,7 @@ const Shelf: React.FC = observer(() => {
         <Route path={"/shelf/notes"} element={<ShelfNotes />} />
         <Route path={"/shelf/collections"} element={<ShelfCollections />} />
         <Route path={"/shelf/search"} element={<ShelfSearch />} />
+        <Route path="/*" element={<Navigate to="/shelf/dashboard" />} />
       </Routes>
     </div>
   );

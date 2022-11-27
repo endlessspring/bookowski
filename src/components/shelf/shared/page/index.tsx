@@ -1,4 +1,5 @@
 import React from "react";
+import Sidebar from "../../../sidebar/sidebar";
 
 import "./style.scss";
 
@@ -10,15 +11,17 @@ type Props = {
 
 const Page: React.FC<Props> = ({ children, title, toolbar }) => {
   return (
-    <div className="bb-shelf-page">
-      <div className="bb-shelf-page-header">
-        <div className="bb-shelf-page-title">{title}</div>
-        <div className="bb-shelf-page-toolbar">{toolbar && toolbar}</div>
-      </div>
-      <div className="bb-shelf-page-content">{children}</div>
+    <>
+        <div className="bb-shelf-page">
+          <div className="bb-shelf-page-header">
+            <div className="bb-shelf-page-title">{title}</div>
+            <div className="bb-shelf-page-toolbar">{toolbar && toolbar}</div>
+          </div>
+          <div className="bb-shelf-page-content">{children}</div>
 
-      <div className="bb-shelf-page-footer"></div>
-    </div>
+          <div className="bb-shelf-page-footer"></div>
+        </div>
+    </>
   );
 };
 
