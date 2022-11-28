@@ -10,7 +10,6 @@ type Props = {
 };
 
 const Book: React.FC<Props> = observer(({ book }) => {
-  
   return (
     <div className="bb-book" onClick={book.openInNewWindow}>
       <div className="bb-book-cover">

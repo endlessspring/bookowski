@@ -14,10 +14,10 @@ const ShelfDashboard = observer(() => {
 
   return (
     <Page title="Читаю сейчас" toolbar={<div></div>}>
-      <div className={classNames("bb-shelf-books")}>
+      <div className={classNames("bb-shelf-dashboard")}>
         {sortByLastOpened().map(
           (book, index) =>
-            index < 3 && <Book key={book.title + book.id} book={book} />
+            index < 4 && <Book key={book.title + book.id} book={book} />
         )}
       </div>
     </Page>

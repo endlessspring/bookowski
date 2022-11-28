@@ -1,36 +1,5 @@
-.bb-shelf-books {
+.bb-shelf-dashboard {
   display: flex;
   flex-wrap: wrap;
-
-  .bb-book {
-    transition: 100ms;
-    .bb-book-cover {
-      width: unset;
-      height: unset;
-    }
-  }
-
-  @media screen and (min-width: 600px) {
-    .bb-book {
-      width: 25%;
-    }
-  }
-  @media screen and (min-width: 1250px) {
-    .bb-book {
-      width: 20%;
-    }
-  }
-}
-.bb-shelf-add-book {
-  background: lightblue;
-  color: black;
-  width: 15px;
-  height: 20px;
-  padding-bottom: 3px;
-  font-size: 15px;
-  border-radius: 2px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
 }

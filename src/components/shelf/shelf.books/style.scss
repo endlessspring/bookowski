@@ -12,12 +12,15 @@
 
   @media screen and (min-width: 600px) {
     .bb-book {
-      width: 25%;
+      max-width: 25%;
+      max-height: 320px;
     }
   }
   @media screen and (min-width: 1250px) {
     .bb-book {
       width: 20%;
+      max-height: 300px;
+
     }
   }
 }

@@ -1,3 +1,4 @@
+import { convertFileSrc } from "@tauri-apps/api/tauri";
 import { BaseDirectory, FileEntry, readBinaryFile } from "@tauri-apps/api/fs";
 import { cast, flow, types } from "mobx-state-tree";
 import { Book } from "epubjs";
@@ -6,7 +7,6 @@ import FsModel from "./shared/FS.model";
 import { BookModel } from "./shared/Book.model";
 import moment from "moment";
 
-// FIXME: При Добавлении новой книги, обложка подгружается только после перезагрузки
 // TODO: Поддержака fb2
 
 const BooksStore = types
@@ -82,8 +82,7 @@ const BooksStore = types
     };
 
     const getBookData = flow(function* (path: string) {
-      const bookBuffer = (yield readBinaryFile(path)).buffer;
-      const book = new Book(bookBuffer);
+      const book = new Book(convertFileSrc(path));
 
       const coverUrl = yield book.coverUrl();
       const metadata = yield book.loaded.metadata;
@@ -120,6 +119,7 @@ const BooksStore = types
       self.isLoading = true;
       try {
         //FIXME: Не ждать пока загрузятся все книги, а добалять по одной
+        //FIXME: Добавить валидацию форматов
         const books = yield Promise.all(
           files.map((file) => getBookData(file.path))
         );
@@ -140,9 +140,7 @@ const BooksStore = types
       yield covers.createDirectory();
       yield covers.scanFiles();
 
-      if (!self.books.length) {
-        yield scanLibrary();
-      }
+      yield scanLibrary();
     });
 
     const afterCreate = flow(function* () {

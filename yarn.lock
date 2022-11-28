@@ -357,6 +357,14 @@
   resolved "http://npm.uis.st/@remix-run%2frouter/-/router-1.0.3.tgz#953b88c20ea00d0eddaffdc1b115c08474aa295d"
   integrity sha512-ceuyTSs7PZ/tQqi19YZNBc5X7kj1f8p+4DIyrcIYFY9h+hd1OKm4RqtiWldR9eGEvIiJfsqwM4BsuCtRIuEw6Q==
 
+"@szhsin/react-menu@^3.3.0":
+  version "3.3.0"
+  resolved "http://npm.uis.st/@szhsin%2freact-menu/-/react-menu-3.3.0.tgz#66b921b31938a665b665f80e24d9ca2800360c45"
+  integrity sha512-GZfPLey2ZSVDaRtALuqH611cSM8QBujztYqLDqrqbWkTCwXrdob9G8PaBapBR/5hyW6dqDKJzFfcthZE3/iMpg==
+  dependencies:
+    prop-types "^15.7.2"
+    react-transition-state "^1.1.5"
+
 "@tauri-apps/api@^1.2.1":
   version "1.2.0"
   resolved "http://npm.uis.st/@tauri-apps%2fapi/-/api-1.2.0.tgz#1f196b3e012971227f41b98214c846430a4eb477"
@@ -2016,7 +2024,7 @@ process-nextick-args@~2.0.0:
   resolved "http://npm.uis.st/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
-prop-types@^15.8.1:
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "http://npm.uis.st/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -2099,6 +2107,11 @@ react-swipeable@^7.0.0:
   version "7.0.0"
   resolved "http://npm.uis.st/react-swipeable/-/react-swipeable-7.0.0.tgz#7a12570ee435d35ac700511de338384aa78d12cd"
   integrity sha512-NI7KGfQ6gwNFN0Hor3vytYW3iRfMMaivGEuxcADOOfBCx/kqwXE8IfHFxEcxSUkxCYf38COLKYd9EMYZghqaUA==
+
+react-transition-state@^1.1.5:
+  version "1.1.5"
+  resolved "http://npm.uis.st/react-transition-state/-/react-transition-state-1.1.5.tgz#22accee21d0011b1d0245be24b6262ae67f494c3"
+  integrity sha512-ITY2mZqc2dWG2eitJkYNdcSFW8aKeOlkL2A/vowRrLL8GH3J6Re/SpD/BLvQzrVOTqjsP0b5S9N10vgNNzwMUQ==
 
 react@^18.2.0:
   version "18.2.0"

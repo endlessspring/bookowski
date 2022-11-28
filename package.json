@@ -10,6 +10,7 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@szhsin/react-menu": "^3.3.0",
     "@tauri-apps/api": "^1.2.1",
     "classnames": "^2.3.2",
     "epubjs": "^0.3.93",
